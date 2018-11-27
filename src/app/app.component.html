@@ -1,20 +1,36 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="photo__header">
+  <div class="photo__title">Photo Gallery</div>
+  <div class="photo__search">
+    <mat-form-field>
+      <input matInput placeholder="Search by title" [value]="clientSearch" [(ngModel)]="clientSearch">
+    </mat-form-field>
+    <button class="photo__clearSearch" mat-raised-button (click)='clearInput()'>Clear</button>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<div class="photo__container">
+  <div
+    *ngFor=" let photo of photos$ | async | filterPhotos:clientSearch"
+    class="photo__item">
+    <mat-card (click)="openFullPhoto(photo.url)">
+      <mat-card-subtitle>{{photo.title}}</mat-card-subtitle>
+      <mat-card-content class="photo__body">
+        <img class="photo__thumbnail" [src]="photo.thumbnailUrl">
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="photo__bottom">
+  <div class="photo__pageNumberSettings">
+    <button  class="photo__pageNumberElement" mat-raised-button (click)="changePageNumber(-1)">Prev</button>
+    <div class="photo__pageNumberElement photo__pageNumber">{{pageNumber$ | async}}</div>
+    <button  class="photo__pageNumberElement" mat-raised-button (click)="changePageNumber(1)">Next</button>
+  </div>
+  <mat-select
+    class="photo__pageSize"
+    [ngModel]="pageSize$ | async"
+    (selectionChange)="changePageSize($event.value)">
+    <mat-option *ngFor="let pageSize of [10,20,50,100]"  [value]="pageSize">
+      {{pageSize}}
+    </mat-option>
+  </mat-select>
+</div>

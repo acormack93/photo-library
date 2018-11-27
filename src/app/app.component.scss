@@ -1,0 +1,74 @@
+.photo__header {
+  height: 13vh;
+  min-height: 60px;
+  background-color: #00BCD4;
+}
+
+.photo__title {
+  margin-left: 20px;
+  font-size: 30px;
+  padding-top: 10px;
+}
+.photo__search {
+  margin-left: 20px;
+}
+
+.photo__clearSearch {
+  margin-left: 20px;
+}
+.photo__container {
+  height: 80vh;
+  width: 100vw;
+  overflow: scroll;
+  text-align: center;
+}
+
+.photo__item {
+  height: 170px;
+  width: 85vw;
+  margin: 20px;
+  max-width: 500px;
+  min-width: 200px;
+  display: inline-block;
+  text-align: left;
+  transition: all .2s ease-in-out;
+}
+
+.photo__item:hover {
+  transform: scale(1.1);
+}
+
+.photo__item mat-card {
+  height: 150px;
+  cursor: pointer;
+}
+
+.photo__thumbnail {
+  height: 100px;
+  width: auto;
+}
+
+.photo__bottom {
+  height: 7vh;
+  min-height: 60px;
+  background-color: #00BCD4;
+}
+.photo__pageNumberSettings {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.photo__pageNumber {
+  width: 30px;
+  line-height: 36px;
+  text-align: center;
+}
+.photo__pageNumberElement {
+  float: left;
+}
+.photo__pageSize {
+  float: right;
+  width: 70px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
